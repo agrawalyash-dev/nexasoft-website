@@ -46,7 +46,7 @@ const highlights = [
 
 const Hero = () => {
   return (
-    <section className="relative isolate overflow-hidden pt-12 pb-16 sm:pt-16 lg:pt-18">
+    <section className="relative isolate overflow-hidden pt-12 pb-12 sm:pt-16 lg:pt-18">
       <HeroBackdrop />
       <HeroBg />
 
