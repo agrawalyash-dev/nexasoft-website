@@ -2,6 +2,7 @@ import HeroBg from "@/components/hero-bg";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Asterisk, Globe } from "lucide-react";
 import { Link } from "react-router";
+import HeroBackdrop from "./hero-backdrop";
 import TechMarquee from "./tech-marquee";
 
 const lineAnimation =
@@ -46,6 +47,7 @@ const highlights = [
 const Hero = () => {
   return (
     <section className="relative isolate overflow-hidden pt-12 pb-16 sm:pt-16 lg:pt-18">
+      <HeroBackdrop />
       <HeroBg />
 
       <div className="global-padding-x">

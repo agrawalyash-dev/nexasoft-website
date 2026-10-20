@@ -11,6 +11,7 @@ import Terms from "./pages/legal/terms";
 import About from "./pages/about";
 import Careers from "./pages/careers";
 import CaseStudiesPage from "./pages/case-studies";
+import CaseStudyDetail from "./pages/case-studies/details";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "case-studies",
         element: <CaseStudiesPage />,
+      },
+      {
+        path: "case-studies/:slug",
+        element: <CaseStudyDetail />,
       },
     ],
   },

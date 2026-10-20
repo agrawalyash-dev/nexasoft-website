@@ -1,8 +1,15 @@
 import type { ReactNode } from "react";
 import { ArrowDown, type LucideIcon } from "lucide-react";
 import HeroBg from "@/components/hero-bg";
+import PageHeroBackdrop from "@/components/page-hero-backdrop";
 import { useCountUp } from "@/hooks/use-count-up";
 import { cn } from "@/lib/utils";
+
+/*
+ * Inner-page hero in the home hero's language: particle network, two-line
+ * headline with a coral second line, intro beside corner-rule stats, a row of
+ * navy/grey tiles that jump to sections on the page, and icon highlights.
+ */
 
 export type HeroStat = { value: number; suffix: string; label: string };
 export type HeroTile = { href: string; label: ReactNode };
@@ -47,6 +54,7 @@ const PageHero = (
 ) => {
   return (
     <section className="relative isolate overflow-hidden pt-12 pb-16 sm:pt-16 lg:pt-18 lg:pb-22">
+      <PageHeroBackdrop />
       <HeroBg />
 
       <div className="global-padding-x">
@@ -64,58 +72,60 @@ const PageHero = (
           </dl>
         </div>
 
-        <nav aria-label={tilesLabel} className="mt-12 sm:mt-14">
-          <ul
-            className={cn(
-              "grid grid-cols-2 gap-1",
-              tiles.length === 4
-                ? "lg:grid-cols-4"
-                : "sm:grid-cols-3 xl:grid-cols-6",
-            )}
-          >
-            {tiles.map(({ href, label }, i) => {
-              const navy = i % 2 === 0;
-              return (
-                <li key={href}>
-                  <a
-                    href={href}
-                    className={cn(
-                      "group relative isolate flex h-full min-h-32 items-end overflow-hidden p-4 pr-12 text-base leading-snug font-medium transition-transform duration-300 outline-none hover:-translate-y-1 focus-visible:ring-3 focus-visible:ring-brand-orange/60 sm:min-h-38 sm:p-5 sm:pr-12 motion-reduce:transition-none",
-                      navy
-                        ? "bg-brand-navy text-white"
-                        : "bg-brand-gray text-foreground",
-                    )}
-                  >
-                    {navy
-                      ? (
-                        <>
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-0 -z-10 bg-radial-[at_88%_12%] from-brand-coral/50 to-transparent to-45%"
-                          />
-                          <span
-                            aria-hidden="true"
-                            className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.07)_1px,transparent_1px)] bg-size-[28px_28px]"
-                          />
-                        </>
-                      )
-                      : (
-                        <span
-                          aria-hidden="true"
-                          className="absolute inset-0 -z-10 bg-radial-[at_12%_90%] from-brand-navy/15 to-transparent to-45%"
-                        />
+        {tiles.length > 0 && (
+          <nav aria-label={tilesLabel} className="mt-12 sm:mt-14">
+            <ul
+              className={cn(
+                "grid grid-cols-2 gap-1",
+                tiles.length === 4
+                  ? "lg:grid-cols-4"
+                  : "sm:grid-cols-3 xl:grid-cols-6",
+              )}
+            >
+              {tiles.map(({ href, label }, i) => {
+                const navy = i % 2 === 0;
+                return (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      className={cn(
+                        "group relative isolate flex h-full min-h-32 items-end overflow-hidden p-4 pr-12 text-base leading-snug font-medium transition-transform duration-300 outline-none hover:-translate-y-1 focus-visible:ring-3 focus-visible:ring-brand-orange/60 sm:min-h-38 sm:p-5 sm:pr-12 motion-reduce:transition-none",
+                        navy
+                          ? "bg-brand-navy text-white"
+                          : "bg-brand-gray text-foreground",
                       )}
-                    <span>{label}</span>
-                    <ArrowDown
-                      aria-hidden="true"
-                      className="absolute top-4 right-4 size-7 stroke-[1.6] transition-transform duration-300 group-hover:translate-y-0.5"
-                    />
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                    >
+                      {navy
+                        ? (
+                          <>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0 -z-10 bg-radial-[at_88%_12%] from-brand-coral/50 to-transparent to-45%"
+                            />
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.07)_1px,transparent_1px)] bg-size-[28px_28px]"
+                            />
+                          </>
+                        )
+                        : (
+                          <span
+                            aria-hidden="true"
+                            className="absolute inset-0 -z-10 bg-radial-[at_12%_90%] from-brand-navy/15 to-transparent to-45%"
+                          />
+                        )}
+                      <span>{label}</span>
+                      <ArrowDown
+                        aria-hidden="true"
+                        className="absolute top-4 right-4 size-7 stroke-[1.6] transition-transform duration-300 group-hover:translate-y-0.5"
+                      />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        )}
 
         <ul className="mt-12 grid gap-5 sm:mt-16 md:grid-cols-3 md:gap-6 xl:gap-10">
           {highlights.map(({ icon: Icon, label }) => (
