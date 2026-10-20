@@ -6,13 +6,9 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { careersKey, submitWeb3Form } from "@/lib/web3forms";
 import { cn } from "@/lib/utils";
 import { careers, experience, interests } from "../data";
-
-const endpoint = (import.meta.env.VITE_CAREERS_ENDPOINT ??
-  import.meta.env.VITE_CONTACT_ENDPOINT) as
-    | string
-    | undefined;
 
 type Fields = {
   name: string;
@@ -107,6 +103,7 @@ const CareersForm = () => {
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [botcheck, setBotcheck] = useState(false);
 
   const set = (key: keyof Fields) => (e: { target: { value: string } }) =>
     setFields((f) => ({ ...f, [key]: e.target.value }));
@@ -135,7 +132,7 @@ const CareersForm = () => {
       return;
     }
 
-    if (!endpoint) {
+    if (!careersKey) {
       const body = [
         `Name: ${fields.name}`,
         `Email: ${fields.email}`,
@@ -150,9 +147,7 @@ const CareersForm = () => {
         .filter(Boolean)
         .join("\n");
       window.location.href = `mailto:${careers.email}?subject=${
-        encodeURIComponent(
-          `Careers: ${fields.name}`,
-        )
+        encodeURIComponent(`Careers: ${fields.name}`)
       }&body=${encodeURIComponent(body)}`;
       setStatus("mailto");
       return;
@@ -160,15 +155,19 @@ const CareersForm = () => {
 
     setStatus("sending");
     try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ type: "careers", ...fields }),
+      await submitWeb3Form(careersKey, {
+        subject: `Careers: ${fields.name} (${fields.interest})`,
+        from_name: "Nexasoft careers",
+        name: fields.name,
+        email: fields.email,
+        phone: fields.phone || "—",
+        location: fields.location || "—",
+        interest: fields.interest,
+        experience: fields.experience,
+        link: fields.link || "—",
+        message: fields.message || "—",
+        botcheck,
       });
-      if (!res.ok) throw new Error(String(res.status));
       setStatus("sent");
       setFields(empty);
       setConsent(false);
@@ -210,6 +209,18 @@ const CareersForm = () => {
       onSubmit={onSubmit}
       className="border border-border bg-white p-6 sm:p-8 lg:p-10"
     >
+      {/* Honeypot: hidden from people, bots tick it and Web3Forms rejects the submission */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        checked={botcheck}
+        onChange={(e) => setBotcheck(e.target.checked)}
+        className="hidden"
+        aria-hidden="true"
+      />
+
       <h2 className="text-2xl font-semibold tracking-tight">
         Share your details
       </h2>

@@ -6,10 +6,9 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { contactKey, submitWeb3Form } from "@/lib/web3forms";
 import { cn } from "@/lib/utils";
 import { budgets, contact, topics } from "../data";
-
-const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
 
 type Fields = {
   name: string;
@@ -70,6 +69,7 @@ const ContactForm = () => {
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [botcheck, setBotcheck] = useState(false);
 
   const set = (key: keyof Fields) => (e: { target: { value: string } }) =>
     setFields((f) => ({ ...f, [key]: e.target.value }));
@@ -102,9 +102,7 @@ const ContactForm = () => {
       return;
     }
 
-    const payload = { ...fields, topics: selected };
-
-    if (!endpoint) {
+    if (!contactKey) {
       const body = [
         `Name: ${fields.name}`,
         `Email: ${fields.email}`,
@@ -128,15 +126,18 @@ const ContactForm = () => {
 
     setStatus("sending");
     try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
+      await submitWeb3Form(contactKey, {
+        subject: `Project enquiry from ${fields.name}`,
+        from_name: "Nexasoft website",
+        name: fields.name,
+        email: fields.email,
+        company: fields.company || "—",
+        phone: fields.phone || "—",
+        topics: selected.length ? selected.join(", ") : "—",
+        budget: fields.budget,
+        message: fields.message,
+        botcheck,
       });
-      if (!res.ok) throw new Error(String(res.status));
       setStatus("sent");
       setFields(empty);
       setSelected([]);
@@ -180,6 +181,18 @@ const ContactForm = () => {
       onSubmit={onSubmit}
       className="border border-border bg-white p-6 sm:p-8 lg:p-10"
     >
+      {/* Honeypot: hidden from people, bots tick it and Web3Forms rejects the submission */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        checked={botcheck}
+        onChange={(e) => setBotcheck(e.target.checked)}
+        className="hidden"
+        aria-hidden="true"
+      />
+
       <h2 className="text-2xl font-semibold tracking-tight">
         Tell us about your project
       </h2>
