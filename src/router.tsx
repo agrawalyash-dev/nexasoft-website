@@ -10,6 +10,7 @@ import Privacy from "./pages/legal/privacy";
 import Terms from "./pages/legal/terms";
 import About from "./pages/about";
 import Careers from "./pages/careers";
+import CaseStudiesPage from "./pages/case-studies";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "careers",
         element: <Careers />,
+      },
+      {
+        path: "case-studies",
+        element: <CaseStudiesPage />,
       },
     ],
   },
