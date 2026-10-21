@@ -94,7 +94,7 @@ export const companyInfo = [
   { label: "Company Type", value: "Private Limited Company" },
   {
     label: "Registration Status",
-    value: "Active, according to the supplied company information",
+    value: "Active",
   },
   { label: "Date of Incorporation", value: "April 11, 2024" },
   {
