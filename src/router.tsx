@@ -12,59 +12,73 @@ import About from "./pages/about";
 import Careers from "./pages/careers";
 import CaseStudiesPage from "./pages/case-studies";
 import CaseStudyDetail from "./pages/case-studies/details";
+import RouteError from "./pages/errors/route-error";
+import NotFound from "./pages/errors/not-found";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <RouteError standalone />,
     children: [
       {
-        path: "",
-        element: <Home />,
-      },
-      {
-        path: "businesses",
-        element: <Businesses />,
-      },
-      {
-        path: "services",
-        element: <Services />,
-      },
-      {
-        path: "industries",
-        element: <Industries />,
-      },
-      {
-        path: "technology",
-        element: <Technology />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-      {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "privacy",
-        element: <Privacy />,
-      },
-      {
-        path: "terms",
-        element: <Terms />,
-      },
-      {
-        path: "careers",
-        element: <Careers />,
-      },
-      {
-        path: "case-studies",
-        element: <CaseStudiesPage />,
-      },
-      {
-        path: "case-studies/:slug",
-        element: <CaseStudyDetail />,
+        errorElement: <RouteError />,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+          {
+            path: "businesses",
+            element: <Businesses />,
+          },
+          {
+            path: "services",
+            element: <Services />,
+          },
+          {
+            path: "industries",
+            element: <Industries />,
+          },
+          {
+            path: "technology",
+            element: <Technology />,
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+          {
+            path: "about",
+            element: <About />,
+          },
+          {
+            path: "privacy",
+            element: <Privacy />,
+          },
+          {
+            path: "terms",
+            element: <Terms />,
+          },
+          {
+            path: "careers",
+            element: <Careers />,
+          },
+          {
+            path: "case-studies",
+            element: <CaseStudiesPage />,
+          },
+          {
+            path: "case-studies/:slug",
+            element: <CaseStudyDetail />,
+          },
+
+          {
+            // Any unknown URL.
+            path: "*",
+            element: <NotFound />,
+          },
+        ],
       },
     ],
   },
