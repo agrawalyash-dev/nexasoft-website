@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "node server",
+    "build": "tsc -b && npm run build:client && npm run build:server && node scripts/prerender.js",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "start": "cross-env NODE_ENV=production node server.js",
+    "preview": "npm run start"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -15,6 +18,8 @@
     "@tailwindcss/vite": "^4.3.3",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
+    "cross-env": "^10.1.0",
+    "express": "^5.3.0",
     "lucide-react": "^1.59.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

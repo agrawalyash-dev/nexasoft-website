@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import type { RouteObject } from "react-router";
 import MainLayout from "./layouts/main-layout";
 import Home from "./pages/home";
 import Businesses from "./pages/businesses";
@@ -15,7 +15,7 @@ import CaseStudyDetail from "./pages/case-studies/details";
 import RouteError from "./pages/errors/route-error";
 import NotFound from "./pages/errors/not-found";
 
-const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <MainLayout />,
@@ -82,6 +82,4 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
-
-export default router;
+];
