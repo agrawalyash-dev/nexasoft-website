@@ -86,10 +86,10 @@ const LegalPage = ({
             <p className="mt-10 border-l-3 border-brand-navy bg-[#f5f7fb] px-5 py-4 text-sm leading-relaxed">
               Questions about this page? Email{" "}
               <a
-                href="mailto:hello@nexasoft.com"
+                href="mailto:hello@nexasofttechnologies.com"
                 className="font-semibold text-brand-navy underline underline-offset-4"
               >
-                hello@nexasoft.com
+                hello@nexasofttechnologies.com
               </a>{" "}
               or use our{" "}
               <Link

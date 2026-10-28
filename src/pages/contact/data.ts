@@ -1,7 +1,7 @@
 import type { FaqItem } from "@/components/faq-section";
 
 export const contact = {
-  email: "hello@nexasoft.com",
+  email: "hello@nexasofttechnologies.com",
   location: "Vadodara, Gujarat, India",
   hours: "Monday to Friday, 9:30 am – 6:30 pm IST",
 };
@@ -54,14 +54,14 @@ export const otherWays = [
     title: "Partnerships",
     text: "Technology vendors and agencies interested in working together.",
     label: "Email us about partnerships",
-    href: "mailto:hello@nexasoft.com?subject=Partnership%20enquiry",
+    href: "mailto:hello@nexasofttechnologies.com?subject=Partnership%20enquiry",
   },
   {
     title: "Existing clients",
     text:
       "For support on a live project, contact your engagement lead directly, or email us.",
     label: "Email support",
-    href: "mailto:hello@nexasoft.com?subject=Client%20support",
+    href: "mailto:hello@nexasofttechnologies.com?subject=Client%20support",
   },
 ];
 

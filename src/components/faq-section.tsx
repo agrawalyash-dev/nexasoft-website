@@ -71,10 +71,10 @@ const FaqSection = ({
                     className="size-4.5 shrink-0 text-white/70"
                   />
                   <a
-                    href="mailto:hello@nexasoft.com"
+                    href="mailto:hello@nexasofttechnologies.com"
                     className="underline-offset-4 hover:underline"
                   >
-                    hello@nexasoft.com
+                    hello@nexasofttechnologies.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3">

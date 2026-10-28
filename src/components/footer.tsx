@@ -60,8 +60,11 @@ const Footer = () => {
             <h4 className="mb-3 font-bold text-foreground">Contact</h4>
             <ul className="grid gap-2">
               <li>
-                <a href="mailto:hello@nexasoft.com" className={linkClass}>
-                  hello@nexasoft.com
+                <a
+                  href="mailto:hello@nexasofttechnologies.com"
+                  className={linkClass}
+                >
+                  hello@nexasofttechnologies.com
                 </a>
               </li>
               <li>Vadodara, Gujarat, India</li>

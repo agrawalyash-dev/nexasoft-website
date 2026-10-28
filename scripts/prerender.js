@@ -48,7 +48,7 @@ write(path.join(distDir, "404.html"), notFound, "Page not found · Nexasoft");
 
 // ---------- sitemap.xml + robots.txt ----------
 // Change this if the live domain is different (no trailing slash)
-const SITE_URL = "https://nexasoft.com";
+const SITE_URL = "https://nexasofttechnologies.com";
 
 const today = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

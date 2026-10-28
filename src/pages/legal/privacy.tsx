@@ -93,7 +93,7 @@ const sections: LegalSection[] = [
       "Have your concerns addressed by our Grievance Officer",
     ],
     after: [
-      "To use any of these rights, email hello@nexasoft.com with the subject “Privacy request”. If you're not satisfied with our response, you may complain to the Data Protection Board of India.",
+      "To use any of these rights, email hello@nexasofttechnologies.com with the subject “Privacy request”. If you're not satisfied with our response, you may complain to the Data Protection Board of India.",
     ],
   },
   {
@@ -121,7 +121,7 @@ const sections: LegalSection[] = [
     id: "contact",
     title: "Contact and Grievance Officer",
     paragraphs: [
-      "For any privacy question, request or complaint, contact our Grievance Officer at hello@nexasoft.com, or write to Grievance Officer, Nexasoft Technologies Pvt Ltd, Vadodara, Gujarat, India. We aim to respond within the time required by law.",
+      "For any privacy question, request or complaint, contact our Grievance Officer at hello@nexasofttechnologies.com, or write to Grievance Officer, Nexasoft Technologies Pvt Ltd, Vadodara, Gujarat, India. We aim to respond within the time required by law.",
     ],
   },
 ];

@@ -1,5 +1,5 @@
 export const careers = {
-  email: "hello@nexasoft.com",
+  email: "hello@nexasofttechnologies.com",
 };
 
 export const interests = [
