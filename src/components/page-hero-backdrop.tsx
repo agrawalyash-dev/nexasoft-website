@@ -49,9 +49,9 @@ const PageHeroBackdrop = ({ className }: { className?: string }) => (
       />
       <path d={GRATICULE} fill="none" stroke="#223173" strokeOpacity={0.07} />
       <g fill="#223173">
-        {dots.map(({ x, y, d }) => (
+        {dots.map(({ x, y, d }, idx) => (
           <circle
-            key={`${x}-${y}`}
+            key={`${x}-${y}-${idx}`}
             cx={x}
             cy={y}
             r={1.5}
